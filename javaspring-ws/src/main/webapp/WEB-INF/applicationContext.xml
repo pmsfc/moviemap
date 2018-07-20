@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" 
+       xmlns:mvc="http://www.springframework.org/schema/mvc" 
+       xmlns:aop="http://www.springframework.org/schema/aop" 
+       xmlns:task="http://www.springframework.org/schema/task" 
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc 
+                http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans 
+                http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context 
+                http://www.springframework.org/schema/context/spring-context-4.2.xsd
+                http://www.springframework.org/schema/aop 
+                http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+                http://www.springframework.org/schema/task
+                http://www.springframework.org/schema/task/spring-task-4.2.xsd
+                ">
+    
+    
+    <task:executor id="myexecutor" pool-size="5"  />
+    <task:annotation-driven executor="myexecutor"/>
+
+    <mvc:annotation-driven />
+    <aop:aspectj-autoproxy />
+    <!-- Use the message-converters element to specify the orders of message converters -->
+	
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="false">
+            <bean class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter" />
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+        
+     
+    
+        
+          
+    
+    <context:component-scan base-package="com.aw.app" />
+        
+       
+        
+    <!-- for token security use this
+    <bean id="securityAspect" class="com.aw.app.service.Secure" />-->
+     
+      
+    <bean name="snarlTemplate" class="com.complexible.stardog.ext.spring.SnarlTemplate">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <bean name="dataSource" class="com.complexible.stardog.ext.spring.DataSourceFactoryBean">
+        <property name="to" value="aw017_db"/>
+        <property name="username" value="admin"/>
+        <property name="password" value="awtriplestore"/>
+        <property name="url" value="http://vps382624.ovh.net:5820"/>
+    </bean>
+        
+    <!-- Configure to plugin JSON as request and response in method handler -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="jsonMessageConverter"/>
+                <ref bean="xmlMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+    
+    <!-- Total customization - see below for explanation. -->
+    <bean id="contentNegotiationManager"
+          class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="favorPathExtension" value="false" />
+        <property name="favorParameter" value="true" />
+        <property name="parameterName" value="mediaType" />
+        <property name="useJaf" value="false"/>
+        <property name="defaultContentType" value="application/json" />
+ 
+        <property name="mediaTypes">
+            <map>
+                <entry key="json" value="application/json" />
+                <entry key="xml" value="application/xml" />
+            </map>
+        </property>
+    </bean>
+    
+     <!-- Make this available across all of Spring MVC -->
+ <mvc:annotation-driven content-negotiation-manager="contentNegotiationManager" />
+	
+    <!-- Configure bean to convert JSON to POJO and vice versa -->
+    <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    </bean>	
+	
+    <bean id="xmlMessageConverter" class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter">
+    </bean>
+    
+    
+    <bean id="documentationController" class="org.jsondoc.springmvc.controller.JSONDocController">
+	<constructor-arg name="version" value="1.0" />
+	<constructor-arg name="basePath" value="http://vps382624.ovh.net:8080/ws" />
+	<constructor-arg name="packages">
+	  <list>
+		<value>com.aw.app.controllers</value> <!-- packages in which you have your spring controllers -->
+		<value>com.aw.app.model</value> <!-- packages in which you have your objects -->
+		 <!-- they can also belong to external jars -->
+	  </list>
+	</constructor-arg>
+	<property name="playgroundEnabled" value="true" /> <!-- optional -->
+	<property name="displayMethodAs" value="URI" /> <!-- optional -->
+    </bean>
+    
+     <mvc:resources mapping="/apidoc/**" location="/apidoc/" />
+
+</beans>
+
+

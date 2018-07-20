@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp.controllers">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+
+    <title>Movie Map</title>
+
+
+</head>
+
+<header class="header-login-signup">
+
+    <div class="header-limiter">
+        <h1><a href="#!/home">Movie<span>Map</span></a></h1>
+        <nav>
+            <a href="#!/home">Movies</a>
+            <a href="#!/actors">Actors</a>
+            <a href="#!/countries">Countries</a>
+        </nav>
+    </div>
+
+</header>
+
+<body>
+
+
+<div >
+
+    <div class="row" style="margin-left:10px;">
+
+
+        <div class="col-md-6" style="overflow-y: scroll;">
+
+            <h4 style="text-align: center;color:red" class="">Editing Mode</h4>
+            <h6 style="text-align: center;color:white" class="">click to edit fields</h6>
+
+            <!-- LEFT SIDE -->
+            <div class="col-sm-4 col-md-4">
+                <h3 style="text-align: center;color:white!important;" class="editp" editable-text="movieName|clean"
+                >{{ (movieName|clean) || 'LOADING...' }}</h3>
+
+                <img style="padding:20px;width:100%; height:100%" src="{{poster}}"
+                     alt="movie poster">
+
+            </div>
+
+            <div class="col-md-8" style="padding-top:55px;">
+
+                <p class="movieDescription"><strong>Date: </strong>
+
+                <pre style="border-bottom: 0px !important;" href="#" editable-bsdate="date"
+                     e-is-open="opened.$data"
+                     e-ng-click="open($event,'$data')"
+                     e-datepicker-popup="yyyy/MM/dd">{{ (date | date:"yyyy/MM/dd") || 'Loading...' }}</pre>
+
+                </p>
+
+
+                <!--<p class="movieDescription"><strong>Rating: </strong>{{movie.rating}}</p>-->
+
+                <br>
+                <div class="movieDescription"><strong>Categories: </strong>
+                    <div class="popover-wrapper" style="overflow-y: scroll">
+                    <pre style="color:white;"><text
+                            class="editp"
+                            editable-checklist="categorySelected"
+                            e-ng-options="s.value as s.text for s in cstatuses">{{ showCategoryStatus() }}</text></pre>
+                    </div>
+                </div>
+                <br>
+                <div class="movieDescription">
+                    <strong>Actors: </strong>
+                    <div class="popover-wrapper">
+
+                        <pre style="color:white;"><text class="editp"
+                                                        ng-repeat="actor in movie.actors">{{actor|clean}}{{$last ?
+                        '.' : ', '}}</text></pre>
+                    </div>
+                </div>
+                <br>
+
+                <div class="movieDescription"><strong>Countries: </strong>
+                    <div class="popover-wrapper" style="overflow-y: scroll">
+                    <pre style="color:white;"><text
+                            class="editp"
+                            editable-checklist="countrySelected"
+                            e-ng-options="s.value as s.text for s in countryStatuses">{{ showCountryStatus()}}</text></pre>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+            <div class="col-md-12" style="padding-top:10px">
+
+                <div
+                        class="movieDescription"><strong style="font-size: 20px;">Description: </strong><br>
+                    <a href="#" editable-textarea="desc" e-rows="5" e-cols="90">
+                        <div style="overflow:auto">
+                            <pre style="color:white;">{{(desc) || 'Loading...' }}</pre>
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-md-12">
+                <div style="float:right;margin-top:10px;">
+                    <button ng-click="smubitnewinfo()" class="btnred list-inline-item"
+                            style="color:black">Submit Changes
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-6" style="padding-top:1px">
+            <center>
+                <div class="addmarker">Add Movie Location&nbsp <input places-auto-complete
+                                                                      style="color:black; width:350px"
+                                                                      ng-model="address" ng-value="address"/>
+                    &nbsp&nbsp
+                    <button ng-click="addNewMarker(address)" class="btnred list-inline-item"
+                            style="color:black;font-size:12px;">Add
+                    </button>
+                </div>
+            </center>
+            <!-- RIGHT SIDE -->
+            <ng-map style="padding-right:20px;margin-top:0;" class="nmapedit" zoom-to-include-markers="auto">
+                <div>
+
+                    <div>
+                        <marker animation="Animation.DROP" draggable="true" on-dragend="getCurrentLocationNew()"
+                                icon="images/bluesmall.png"
+                                ng-if="address.length>0" position="{{address}}" title="{{address}}"></marker>
+                    </div>
+
+                    <div ng-repeat="local in locations track by $index" ng-if="(local) != null">
+                        <marker draggable="true" on-dragend="getCurrentLocation(local)"
+                                position="{{local.coordinates}}" title="{{local.name|clean}}" id="{{local.name}}"
+                                on-click="markerclick2(local.name,local.movie)"></marker>
+                    </div>
+
+                </div>
+            </ng-map>
+
+
+        </div>
+
+
+    </div>
+
+</body>
+</html>

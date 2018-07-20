@@ -1,0 +1,33 @@
+{
+  "name": "angular-google-auth2",
+  "version": "1.0.8",
+  "description": "This angular js directive plugin helps one to implement the google auth2 sign-in and sign-out features in web apps, mobile apps developed using angular js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sreeneshkini/angular-google-auth2.git"
+  },
+  "keywords": [
+    "mobile",
+    "web",
+    "directivejs",
+    "plugin",
+    "logout",
+    "login",
+    "signout",
+    "signin",
+    "google",
+    "auth",
+    "auth2",
+    "angular"
+  ],
+  "author": "Sreenesh Ramesh Kini Bindu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sreeneshkini/angular-google-auth2/issues"
+  },
+  "homepage": "https://github.com/sreeneshkini/angular-google-auth2#readme"
+}

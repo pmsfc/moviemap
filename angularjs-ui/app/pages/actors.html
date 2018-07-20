@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp.controllers">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="icon" href="http://getbootstrap.com/favicon.ico">
+    <link rel="stylesheet" href="styles/commentbox.css">
+
+    <title>Movie Map</title>
+</head>
+
+
+<header class="header-login-signup">
+    <div class="header-limiter">
+        <h1><a ng-click="pesquisar('');searchText='';closeInfo();">Movie<span>Map</span></a></h1>
+        <nav>
+            <a href="#!/home" >Movies</a>
+            <a href="#!/actors" class="selected">Actors</a>
+            <a href="#!/countries">Countries</a>
+        </nav>
+
+
+    </div>
+
+    <div style="display:inline;float:right">
+
+        <div style="font-size: 15px;margin-top:10px;display:inline;float:right;" s-sign-out>Sign Out</div>
+        <div style="font-size: 15px;margin-top:10px;display:inline;float:right;margin-right:30px;">{{username}}</div>
+        <img src="{{userimg}}" class="circular">
+
+
+    </div>
+
+</header>
+
+
+<body>
+<div>
+
+    <!-------------  Movie Details Section ------------------------>
+
+    <div class="row-map" style="width:100%;margin-right:15px;min-height:550px">
+        <div ng-show='movieinfo'
+             style="width: 100%;background-color:black;height:100%;border:1px solid darkred;">
+
+            <div class="row" style="">
+
+                <div class="col-lg-4  col-sm-6 col-xs-6">
+
+                    <div style="padding-top:50px;padding-left: 50px">
+                        <h4 class="movieDescriptionTitle">{{movie.name|clean}}</h4>
+                        <p class="movieDescription"><strong>Date: </strong>{{movie.date}}</p>
+                        <!--<p class="movieDescription"><strong>Rating: </strong>{{movie.rating}}</p>-->
+                        <div style="max-height:95px;overflow: hidden;"
+                             class="movieDescription"><strong>Description: </strong>{{movie.overview}}
+                        </div>
+                        <br>
+                        <div class="movieDescription"><strong>Categories: </strong>
+                            <p style="display:inline" ng-repeat="category in movie.category">{{category|clean}}{{$last ?
+                                '.' : ', '}}
+                            </p>
+                        </div>
+                        <br>
+                        <div style="max-height:65px;overflow: hidden;" class="movieDescription">
+                            <strong>Actors: </strong>
+                            <p style="display:inline" ng-repeat="actor in movie.actors">{{actor|clean}}{{$last ? '.' :
+                                ', '}}
+                            </p>
+                        </div>
+                        <br>
+                        <div class="movieDescription"><strong>Countries: </strong>
+                            <p style="display:inline;" ng-repeat="country in movie.country">{{country|clean}}{{$last ?
+                                '.' : ', '}}
+                            </p>
+                        </div>
+                        <br>
+                        <strong class="movieDescription">Rating: </strong>
+                        <span style="color:#ffd700;font-size:16px;" uib-rating ng-model="movie.rating" max="10"
+                              read-only="isReadonly"
+                              on-hover="hoveringOver(value)"
+                              on-leave="overStar = null"
+                              aria-labelledby="default-rating"></span>{{movie.rating}}
+                    </div>
+                    <div class="single switch">
+                        <ul class="list-inline">
+                            <button ng-click="detailsInfo()" class="btnred list-inline-item active" style="color:black">
+                                Movie
+                                Description
+                            </button>
+                            &nbsp&nbsp&nbsp
+                            <button ng-click="recommendedInfo()" class="btnred list-inline-item" style="color:black">
+                                Similar
+                                Movies
+                            </button>
+                            &nbsp&nbsp&nbsp
+                            <button ng-click="recommendedInfoFeedbacks(movie.name)" class="btnred list-inline-item"
+                                    style="color:black">Feedbacks
+                            </button>
+                            &nbsp
+                            <a ng-href="/#!/editmovie/{{movie.id}}" class="btnred list-inline-item"
+                               style="color:black">Edit
+                            </a>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-6" style="height:inherit">
+                    <div class="poster">
+                        <img style="width:100%; height:100%" src="https://image.tmdb.org/t/p/w500/{{movie.picture}}"
+                             alt="movie poster">
+                    </div>
+                </div>
+                <div ng-show='trailer' class="col-lg-5  trailer" style="height:inherit">
+                    <iframe width="735px" height="548px" ng-src="{{trustSrc(videoID)}}" frameborder="0"
+                            allowfullscreen></iframe>
+                    <button style="position:fixed;top:90px;background-color:darkred;"
+                            ng-click="closeInfo()">X
+                    </button>
+                </div>
+
+                <div ng-show='comentbox' class="col-lg-5  trailer" style="padding-right:60px;">
+
+                    <div style="color:white;background-color: #1d1f21;height:330px;margin-top:50px;padding:5px;overflow-y: scroll;">
+
+                        <div ng-repeat="comment in comments"
+                             style="margin:15px;text-align: justify;text-justify: inter-word;line-height: 120%;">
+                            <p style="display:inline;float:left"><strong>{{comment.user|clean}}: </strong>{{comment.text}}
+                            </p>
+                            <div ng-click="deleteComment(comment.id)"
+                                 style="display:inline;float:right;font-size:12px;color:darkred"
+                                 ng-if="(comment.user|clean) == username">
+                                Delete
+                            </div>
+                            <br>
+                        </div>
+
+                    </div>
+
+                    <div class="widget-area no-padding blank">
+                        <div class="status-upload">
+                            <form>
+                                <textarea my-enter="submitComment(movie.name)" style="padding:20px;"
+                                          ng-model="commentData"
+                                          placeholder="Write down your opinion!"></textarea>
+                                <ul>
+                                    <li><a title="" data-toggle="tooltip" data-placement="bottom"
+                                           data-original-title="Audio"><i class="fa fa-music"></i></a></li>
+                                    <li><a title="" data-toggle="tooltip" data-placement="bottom"
+                                           data-original-title="Video"><i class="fa fa-video-camera"></i></a></li>
+                                    <li><a title="" data-toggle="tooltip" data-placement="bottom"
+                                           data-original-title="Sound Record"><i class="fa fa-microphone"></i></a></li>
+                                    <li><a title="" data-toggle="tooltip" data-placement="bottom"
+                                           data-original-title="Picture"><i class="fa fa-picture-o"></i></a></li>
+                                </ul>
+                                <button type="submit" ng-click="submitComment(movie.name)"
+                                        class="btnred btnred-success green"><i class="fa fa-share"></i> Submit
+                                </button>
+                            </form>
+                        </div><!-- Status Upload  -->
+                    </div><!-- Widget Area -->
+                    <button style="position:fixed;top:90px;background-color:darkred;"
+                            ng-click="closeInfo()">X
+                    </button>
+                </div>
+            </div>
+            <!-- barra no final-->
+            <div style="clear: both"></div>
+        </div>
+
+
+        <div ng-show='map' style="width: 100%;">
+            <ng-map class="nmap" default-style="false" center="40,-41" zoom="3">
+                <div ng-repeat="movie in movies">
+                    <div ng-repeat="local in movie.location track by $index" ng-if="(local) != null">
+                        <marker position="{{local}}" title="{{movie.name|clean}}" id="{{movie.id}}"
+                                on-click="markerclick(movie)"></marker>
+                    </div>
+
+                </div>
+            </ng-map>
+
+            <div ng-show='sch' class="search">
+
+
+                <md-autocomplete style="color:black;"
+                                 md-selected-item="selectedItem"
+                                 md-search-text="searchText"
+                                 md-search-text-change="pesquisarActor(searchText)"
+                                 md-items="item in pesquisarActor(searchText)"
+                                 md-item-text="item.name|clean"
+                                 md-selected-item-change="pesquisar(selectedItem.name)"
+                                 md-input-minLength="1"
+                                 placeholder="Search for a actor">
+                    <md-not-found>No matching were found were "{{searchText}}"</md-not-found>
+                    <span   md-highlight-text="searchText">{{item.name|clean}}</span>
+                </md-autocomplete>
+            </div>
+        </div>
+
+        <!------------- categories Section ------------------------>
+        <div ng-show='cats' class="cats" title="Movies Categories">
+
+            <div class="categ">
+                <h4>Categories</h4>
+
+                <div class="" ng-repeat="role in roles">
+                    <a style="font-family: Tahoma; color: #8D8D8D;font-size: 11px;padding-left: 5px;float: left;width: 142px;
+                         text-decoration: initial"> </a>
+
+                    <input class="styled" type="checkbox"
+                           checklist-model="roles" checklist-value="role.id"
+                           ng-init='checkStatus=false' ng-model='checkStatus'
+                           ng-if="role !== 'undefined'"
+                           ng-click='bandChoosed(search,checkStatus,role.name|clean)'> {{role.name|clean}}
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+
+    <!------------- Bara de filmes Section ------------------------>
+
+    <div class="row row-movies" style="margin-left:15px;">
+        <div class="col-md-12">
+            <div class=" plas" style="display:inline-block;float:left;">
+                <b class="noselect" style="font-size:70px; color: red" ng-click="previous()">
+                    <i ng-hide class="fa fa-angle-left noselect" style="margin-top:40px"></i>
+                </b>
+            </div>
+            <div ng-click="markerclick(null,movie)" style="display:inline-block;margin:18px;float:left;"
+                 ng-repeat="movie in movies">
+
+                <img class="poster-small"
+                     src="https://image.tmdb.org/t/p/w154/{{movie.picture}}"
+                     alt="movie poster"
+                     style="width:120px;height:160px;"><br>
+
+                <p class="movieName">{{movie.name|clean}}
+
+                <p style="font-size:11px;color:white; text-align: center;">
+                    Rating: {{movie.rating}} &nbsp&nbsp&nbsp Year: {{movie.date|year}}
+                </p>
+
+            </div>
+            <div class=" plas" style="display:inline-block;float:left;">
+
+                <b class="noselect" style="font-size:70px; color: red">
+                    <i ng-click="next()" class="fa fa-angle-right noselect" style="margin-top:40px"></i>
+                </b>
+            </div>
+        </div>
+    </div>
+
+</div>
+<toaster-container></toaster-container>
+</body>
+</html>

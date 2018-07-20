@@ -1,0 +1,473 @@
+/* app css stylesheet */
+
+.menu {
+  list-style: none;
+  border-bottom: 0.1em solid black;
+  margin-bottom: 2em;
+  padding: 0 0 0.5em;
+}
+
+.menu:before {
+  content: "[";
+}
+
+.menu:after {
+  content: "]";
+}
+
+.menu > li {
+  display: inline;
+}
+
+.menu > li + li:before {
+  content: "|";
+  padding-right: 0.3em;
+}
+
+
+
+#canvas {
+}
+#canvas-svg {
+}
+.land {
+  fill: #222;
+}
+.boundary {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1px;
+}
+#tooltip-container {
+  position: absolute;
+  background-color: #fff;
+  color: #000;
+  padding: 10px;
+  border: 1px solid;
+  display: none;
+}
+.tooltip_key {
+  font-weight: bold;
+}
+.tooltip_value {
+  margin-left: 20px;
+  float: right;
+}
+
+
+.navBardemoBasicUsage md-content .ext-content {
+  padding: 50px;
+  margin: 20px;
+  background-color: #FFF2E0; }
+
+
+
+
+h1, h2 {
+    margin-bottom: .25em;
+    font-weight: normal;
+    text-align: center;
+}
+h2 {
+    margin: .25em 0 2em;
+    color: #aaa;
+}
+form {
+    width: 7em;
+    margin: 0 auto;
+}
+.txtcenter {
+    margin-top: 4em;
+    font-size: .9em;
+    text-align: center;
+    color: #aaa;
+}
+.copy {
+    margin-top: 2em;
+}
+.copy a {
+    text-decoration: none;
+    color: #4778d9;
+}
+
+.search{
+     width:360px;
+     position: absolute;
+     top: 90px;
+     left: 10px;
+     z-index: 99;
+ }
+
+.pages{
+    position: absolute;
+    top: 540px;
+    left: 16px;
+    z-index: 99;
+}
+.btpPrev{
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 30px 0 30px 52.0px;
+    border-color: transparent transparent transparent #ff0000;
+}
+.btpNext{
+    width: 0;
+    height: 0;
+    right: 50%;
+    border-style: solid;
+    border-width: 30px 0 30px 52.0px;
+    border-color: transparent transparent transparent #ff0000;
+}
+.pagenum{
+    color:white;
+    width:14px;
+    font-size: 14px;
+}
+
+.cats{
+    position: absolute;
+    top: 150px;
+    left: 10px;
+    z-index: 99;
+}
+
+.categ{
+    position: absolute;
+    z-index: 99 !important;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding:10px;
+    border-radius: 10px;
+}
+
+
+
+.movies{
+    width:100%;
+}
+
+.movieName {
+    font-family: 'Roboto', sans-serif;
+    margin-top:5px;
+    width: 120px;
+    overflow: hidden;
+    height: 17px;
+    color: white;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    font-size: 15px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.movieDetails {
+    font-family: 'Roboto', sans-serif;
+    margin: 5px 0;
+    width: 120px;
+    overflow: hidden;
+    height: 17px;
+    color: white;
+    text-overflow: ellipsis;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+body, html {
+    background: #141414;
+    background-image: initial;
+    background-position-x: initial;
+    background-position-y: initial;
+    background-size: initial;
+    background-repeat-x: initial;
+    background-repeat-y: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(20, 20, 20);
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.2;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: default;
+    overflow-x:hidden;
+    user-select: none;
+    -o-user-select:none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+
+
+
+
+
+/* Let's get this party started */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: rgba(255,0,0,0.8);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background: rgba(255,0,0,0.4);
+}
+
+ng-map {width:100%; height:100%;position: absolute;}
+
+.nmap{
+    height:550px;
+}
+
+.nmapedit{
+    height:750px;
+}
+
+.row-map{
+    height:550px;
+}
+
+/* madeira PC */
+@media screen and (max-height: 900px) {
+    .nmap{
+        height:500px !important;
+    }
+
+    .row-map{
+        height:500px !important;
+    }
+
+    .row-movies{
+        overflow-y: hidden;
+    }
+
+    .plas{
+        width:10px;
+        margin:5px !important;
+        font-size: 10px !important;
+    }
+}
+
+
+@media screen and (max-height: 800px) {
+    .nmap {
+        height: 440px !important;
+    }
+
+    .row-map {
+        height: 440px !important;
+    }
+
+    .footer-distributed {
+        display: none;
+    }
+
+    .categ {
+
+        top: -60px;
+    }
+
+    .search {
+        left: 200px;
+    }
+
+    .pages {
+        top: 480px;
+    }
+
+    .plas {
+        width: 10px;
+        margin: 5px;
+        font-size: 20px;
+    }
+}
+
+
+@media screen and (max-width: 1400px) {
+
+    .trailer{
+        display:none;
+    }
+
+}
+
+
+.noselect {
+    user-select: none;
+    -o-user-select:none;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+}
+
+.plas{
+    width:10px ;
+    margin:30px ;
+}
+
+.single {
+    padding: 30px 15px;
+    margin-top: 40px;
+    background-color:black;
+    border-radius: 20px;
+}
+.single h3.side-title {
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
+    font-size: 20px;
+    color: #333;
+    text-transform: uppercase; }
+.single h3.side-title:after {
+    content: '';
+    width: 60px;
+    height: 1px;
+    background: #ff173c;
+    display: block;
+    margin-top: 6px; }
+
+.single ul {
+    margin-bottom: 0; }
+.single li a {
+    color: #666;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-bottom: 1px solid #f0f0f0;
+    line-height: 40px;
+    display: block;
+    text-decoration: none; }
+.single li a:hover {
+    color: #ff173c; }
+.single li:last-child a {
+    border-bottom: 0; }
+
+
+.poster{
+    width:400px;height:548px;
+    margin:auto;
+    -moz-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+    -webkit-box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+    box-shadow: 1px 2px 3px rgba(0,0,0,.5);
+}
+
+.btnred {
+    background: #d12c2c;
+    background-image: -webkit-linear-gradient(top, #d12c2c, #a13f3f);
+    background-image: -moz-linear-gradient(top, #d12c2c, #a13f3f);
+    background-image: -ms-linear-gradient(top, #d12c2c, #a13f3f);
+    background-image: -o-linear-gradient(top, #d12c2c, #a13f3f);
+    background-image: linear-gradient(to bottom, #d12c2c, #a13f3f);
+    -webkit-border-radius: 3;
+    -moz-border-radius: 3;
+    border-radius: 3px;
+    font-family: 'Roboto', sans-serif;
+    color: #ffffff !important;
+    font-size: 16px;
+    padding: 5px 10px 5px 5px;
+    text-decoration: none;
+    border:0px;
+}
+
+.btnred:hover {
+    background: #fc3c3c;
+    text-decoration: none;
+}
+
+.switch{
+    margin-left:40px;
+}
+
+.movieDescription{
+    color:white;
+    letter-spacing: 1px;
+    font-family: 'Roboto', sans-serif;
+    text-align: justify;
+    text-justify: inter-word;
+}
+.movieDescriptionName{
+    color:white;
+    font-weight: bold;
+    display:inline;
+    letter-spacing: 2px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.boxhead a {
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.circular {
+    width: 40px;
+    height: 40px;
+    border-radius: 17px;
+    -webkit-border-radius: 17px;
+    -moz-border-radius: 17px;
+    margin-right:20px;
+}
+
+
+ul.menu li a:before, ul.menu li .item:before, ul.menu li .separator:before {
+    content: "\2022";
+    font-family: FontAwesome;
+    margin-right: 10px;
+    display: inline;
+    vertical-align: middle;
+    font-size: 1.6em;
+    font-weight: normal;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none;
+}
+
+.addmarker{
+    z-index:999;
+    color:white;
+    font-weight: bold;
+    height:50px;
+    width:100%;
+    background-color: rgba(105, 105, 105, 0.9);
+    padding:10px;
+
+}
+
+pre {
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+
+    color:black !important;
+}
+
+.editp{
+    color:black !important;
+    border-bottom: 0px!important;
+}
+.editable-checklist label {
+    display: block;
+}
+
+.editable-input{
+    z-index: 999 !important;
+}

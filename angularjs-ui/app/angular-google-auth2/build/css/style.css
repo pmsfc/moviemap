@@ -1,0 +1,292 @@
+/******************************************************************CSS Styling for Sign In and Sign Out buttons(Custom classes)*****************************************************/
+#s_customBtn{
+	cursor: pointer;
+}
+.signInBlueSmall{
+  background-color: #3e3ebc;
+  width: 149px;
+  height: 40px;
+  border-radius: 2px;
+  color: white;
+}
+.signInBlueSmall:hover{
+  background-color: #6f7af2;
+}
+.signInBlueMedium{
+  background-color: #3e3ebc;
+  width: 149px;
+  height: 44px;
+  border-radius: 2px;
+  color: white;
+  padding-top: 4px;
+}
+.signInBlueMedium:hover{
+  background-color: #6f7af2;
+}
+.signInBlueLarge{
+  background-color: #3e3ebc;
+  width: 149px;
+  height: 48px;
+  border-radius: 2px;
+  color: white;
+  padding-top: 9px;
+}
+.signInBlueLarge:hover{
+  background-color: #6f7af2;
+}
+.signInLightBlueSmall{
+  background-color: #6f7af2;
+  width: 149px;
+  height: 40px;
+  border-radius: 2px;
+  color: white;
+}
+.signInLightBlueSmall:hover{
+  background-color: #3e3ebc;
+}
+.signInLightBlueMedium{
+  background-color: #6f7af2;
+  width: 149px;
+  height: 44px;
+  border-radius: 2px;
+  color: white;
+  padding-top: 4px;
+}
+.signInLightBlueMedium:hover{
+  background-color: #3e3ebc;
+}
+.signInLightBlueLarge{
+  background-color: #6f7af2;
+  width: 149px;
+  height: 48px;
+  border-radius: 2px;
+  color: white;
+  padding-top: 9px;
+}
+.signInLightBlueLarge:hover{
+  background-color: #3e3ebc;
+}
+.signInRedSmall{
+  background-color: #dc4e41;
+  width: 149px;
+  height: 40px;
+  border-radius: 2px;
+  color: white;
+}
+.signInRedSmall:hover{
+  background-color: #ea7064;
+}
+.signInRedMedium{
+  background-color: #dc4e41;
+  width: 149px;
+  height: 44px;
+  border-radius: 2px;
+  color: white;
+  padding-top: 4px;
+}
+.signInRedMedium:hover{
+  background-color: #ea7064;
+}
+.signInRedLarge{
+  background-color: #dc4e41;
+  width: 149px;
+  height: 48px;
+  border-radius: 2px;
+  color: white;
+  padding-top: 9px;
+}
+.signInRedLarge:hover{
+  background-color: #ea7064;
+}
+.signInLightRedSmall{
+	background-color: #ea7064;
+	width: 149px;
+  height: 40px;
+  border-radius: 2px;
+  color: white;
+}
+.signInLightRedSmall:hover{
+	background-color: #dc4e41;
+}
+.signInLightRedMedium{
+  background-color: #ea7064;
+  width: 149px;
+  height: 44px;
+  border-radius: 2px;
+  color: white;
+  padding-top: 4px;
+}
+.signInLightRedMedium:hover{
+  background-color: #dc4e41;
+}
+.signInLightRedLarge{
+  background-color: #ea7064;
+  width: 149px;
+  height: 48px;
+  border-radius: 2px;
+  color: white;
+  padding-top: 9px;
+}
+.signInLightRedLarge:hover{
+  background-color: #dc4e41;
+}
+.signInGreenSmall{
+  background-color: #2d892d;
+  width: 149px;
+  height: 40px;
+  border-radius: 2px;
+  color: white;
+}
+.signInGreenSmall:hover{
+  background-color: #56b556;
+}
+.signInGreenMedium{
+  background-color: #2d892d;
+  width: 149px;
+  height: 44px;
+  border-radius: 2px;
+  color: white;
+  padding-top: 4px;
+}
+.signInGreenMedium:hover{
+  background-color: #56b556;
+}
+.signInGreenLarge{
+  background-color: #2d892d;
+  width: 149px;
+  height: 48px;
+  border-radius: 2px;
+  color: white;
+  padding-top: 9px;
+}
+.signInGreenLarge:hover{
+  background-color: #56b556;
+}
+.signInLightGreenSmall{
+	background-color: #56b556;
+  width: 149px;
+  height: 40px;
+  border-radius: 2px;
+  color: white;
+}
+.signInLightGreenSmall:hover{
+	background-color: #2d892d;
+}
+.signInLightGreenMedium{
+	background-color: #56b556;
+ 	width: 149px;
+  height: 44px;
+  border-radius: 2px;
+  color: white;
+  padding-top: 4px;
+}
+.signInLightGreenMedium:hover{
+	background-color: #2d892d;
+}
+.signInLightGreenLarge{
+	background-color: #56b556;
+ 	width: 149px;
+  height: 48px;
+  border-radius: 2px;
+  color: white;
+  padding-top: 9px;
+}
+.signInLightGreenLarge:hover{
+	background-color: #2d892d;
+}
+.signOutRed{
+  border: 3px solid #dc4e41;
+  width: 58px;
+  height: 19px;
+  color: #dc4e41;
+  padding: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.signOutRed:hover{
+	background-color: #ea7064;
+  color: white;
+}
+.signOutBlue{
+  border: 3px solid #3e3ebc;
+  width: 58px;
+  height: 19px;
+  color: #3e3ebc;
+  padding: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.signOutBlue:hover{
+	background-color: #6f7af2;
+  color: white;
+}
+.signOutGreen{
+  border: 3px solid #2d892d;
+  width: 58px;
+  height: 19px;
+  color: #2d892d;
+  padding: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.signOutGreen:hover{
+	background-color: #56b556;
+  color: white;
+}
+.signOutLightRed{
+	background-color: #ea7064;
+  border: 3px solid #dc4e41;
+  width: 58px;
+  height: 19px;
+  color: white;
+  padding: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.signOutLightRed:hover{
+	background-color: white;
+  border: 3px solid #dc4e41;
+  color: #dc4e41;
+}
+.signOutLightBlue{
+	background-color: #6f7af2;
+  border: 3px solid #3e3ebc;
+  width: 58px;
+  height: 19px;
+  color: white;
+  padding: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.signOutLightBlue:hover{
+	background-color: white;
+  border: 3px solid #3e3ebc;
+  color: #3e3ebc;
+}
+.signOutLightGreen{
+	background-color: #56b556;
+  border: 3px solid #2d892d;
+  width: 58px;
+  height: 19px;
+  color: white;
+  padding: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.signOutLightGreen:hover{
+	background-color: white;
+  border: 3px solid #2d892d;
+  color: #2d892d;
+}
+.s_loginButton span{
+	font-size: 13px;
+  font-weight: bold;
+  position: relative;
+  top: -11px;
+  left: -6px;
+}
+.gPlusIcon{
+		width: 35px;
+		position: relative;
+		top: 2px;
+}
